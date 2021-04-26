@@ -11,15 +11,15 @@ public class UrlModel {
 
     @Id
     private String id;
-    private String urlName;
-    private String urlOwner;
-    private String urlDestinity;
-    private String urlKey;
+    private final String urlName;
+    private final String urlOwner;
+    private final String urlDestination;
+    private final String urlKey;
 
-    public UrlModel(String urlName, String urlOwner, String urlDestinity, String urlKey) {
+    public UrlModel(String urlName, String urlOwner, String urlDestination, String urlKey) {
         this.urlName = urlName;
         this.urlOwner = urlOwner;
-        this.urlDestinity = urlDestinity;
+        this.urlDestination = urlDestination;
         this.urlKey = urlKey;
     }
 
@@ -39,8 +39,8 @@ public class UrlModel {
         return urlOwner;
     }
 
-    public String getUrlDestinity() {
-        return urlDestinity;
+    public String getUrlDestination() {
+        return urlDestination;
     }
 
     public String getUrlKey() {
