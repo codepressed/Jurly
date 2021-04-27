@@ -7,4 +7,5 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "Users")
 public class UserModel {
+    //TODO User Model
 }

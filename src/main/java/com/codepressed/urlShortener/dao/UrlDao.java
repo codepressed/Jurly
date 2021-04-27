@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
  * @author Codepressed
  */
 @Repository
-public interface UrlDao extends MongoRepository<UrlModel, Integer> {
+public interface UrlDao extends MongoRepository<UrlModel, String> {
 }

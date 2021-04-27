@@ -14,13 +14,15 @@ public class UrlModel {
     private final String urlName;
     private final String urlOwner;
     private final String urlDestination;
-    private final String urlKey;
+    private final String urlKey; //localhost:8080/go/urlKey
+    private final Boolean urlHasAds;
 
-    public UrlModel(String urlName, String urlOwner, String urlDestination, String urlKey) {
+    public UrlModel(String urlName, String urlOwner, String urlDestination, String urlKey, Boolean urlHasAds) {
         this.urlName = urlName;
         this.urlOwner = urlOwner;
         this.urlDestination = urlDestination;
         this.urlKey = urlKey;
+        this.urlHasAds = urlHasAds;
     }
 
     public String getId() {
@@ -45,5 +47,9 @@ public class UrlModel {
 
     public String getUrlKey() {
         return urlKey;
+    }
+
+    public Boolean getUrlHasAds() {
+        return urlHasAds;
     }
 }
