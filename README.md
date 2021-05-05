@@ -17,3 +17,4 @@ own mongoDB and customize website's texts.
 - [ ] Mail activation
 - [ ] Password encryption
 - [ ] Editable text
+- [ ] Url Stats

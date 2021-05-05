@@ -2,6 +2,8 @@ package com.codepressed.urlShortener.service;
 
 import com.codepressed.urlShortener.model.UrlModel;
 
+import java.util.Date;
+
 /**
  * @author Codepressed
  */
@@ -14,7 +16,7 @@ public class UrlServiceImpl implements UrlService{
     }
 
     @Override
-    public long addUrl(String id, String urlName, String urlOwner, String urlDestination, String urlKey, Boolean urlHasAds) {
+    public long addUrl(String id, String urlName, String urlOwner, String urlDestination, String urlKey, Boolean urlHasAds, Date urlCreationDate) {
         return 0;
     }
 

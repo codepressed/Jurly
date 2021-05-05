@@ -3,6 +3,8 @@ package com.codepressed.urlShortener.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 /**
  * @author Codepressed
  */
@@ -16,13 +18,15 @@ public class UrlModel {
     private final String urlDestination;
     private final String urlKey; //localhost:8080/go/urlKey
     private final Boolean urlHasAds;
+    private final Date urlCreationDate;
 
-    public UrlModel(String urlName, String urlOwner, String urlDestination, String urlKey, Boolean urlHasAds) {
+    public UrlModel(String urlName, String urlOwner, String urlDestination, String urlKey, Boolean urlHasAds, Date urlCreationDate) {
         this.urlName = urlName;
         this.urlOwner = urlOwner;
         this.urlDestination = urlDestination;
         this.urlKey = urlKey;
         this.urlHasAds = urlHasAds;
+        this.urlCreationDate = urlCreationDate;
     }
 
     public String getId() {
@@ -51,5 +55,9 @@ public class UrlModel {
 
     public Boolean getUrlHasAds() {
         return urlHasAds;
+    }
+
+    public Date getUrlCreationDate() {
+        return urlCreationDate;
     }
 }
