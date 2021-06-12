@@ -12,15 +12,15 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @ComponentScan(basePackages = "com.codepressed.urlShortener")
 @PropertySource("classpath:/urlshortener.properties")
-public class AppConfig {
+public class SiteConfig {
 
-    @Value("${app.name}")
+    @Value("${app.base.name}")
     private String appName;
 
-    @Value("${app.description}")
+    @Value("${app.base.description}")
     private String appDescription;
 
-    @Value("${app.copyright}")
+    @Value("${app.base.copyright}")
     private String appCopyright;
 
     public String getAppName() {

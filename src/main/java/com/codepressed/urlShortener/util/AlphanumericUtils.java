@@ -1,4 +1,4 @@
-package com.codepressed.urlShortener.utils;
+package com.codepressed.urlShortener.util;
 
 /**
  * @author Codepressed

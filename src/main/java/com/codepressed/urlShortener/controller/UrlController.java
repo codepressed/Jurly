@@ -1,47 +1,27 @@
 package com.codepressed.urlShortener.controller;
 
-import com.codepressed.urlShortener.config.AppConfig;
-import com.codepressed.urlShortener.dao.UrlDao;
-import com.codepressed.urlShortener.dao.UserDao;
-import com.codepressed.urlShortener.service.UrlServiceImpl;
-import org.slf4j.LoggerFactory;
+import com.codepressed.urlShortener.service.MongoUtilsServiceImpl;
+import com.codepressed.urlShortener.service.ShortUrlServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-
-/**
- * @author Codepressed
- */
-
-@RestController
+@Controller
 public class UrlController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(UrlController.class);
     @Autowired
-    private AppConfig appConfig;
+    MongoUtilsServiceImpl mongoUtilsService;
 
-    private UrlDao urlDao;
-    private UserDao userDao;
+    @Autowired
+    ShortUrlServiceImpl shortUrlService;
 
-    public UrlController(UrlDao urlDao) {
-        this.urlDao = urlDao;
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public void redirectToUrl (@PathVariable String id, HttpServletResponse resp) throws Exception{
+        final String url = shortUrlService.findUrlById(id);
+        resp.addHeader("Location", url);
+        resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
     }
-
-    @RequestMapping(value = "go/{urlKey}", method=RequestMethod.GET)
-    public RedirectView redirectUrl(@PathVariable String urlKey, HttpServletRequest request, HttpServletResponse response) {
-        LOGGER.info("URL to redirect: " + urlKey);
-        String redirectUrlString = UrlServiceImpl.getUrlFromKey(urlKey);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(redirectUrlString);
-        return redirectView;
-    }
-
-
 }

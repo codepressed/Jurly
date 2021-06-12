@@ -1,14 +1,11 @@
-package com.codepressed.urlShortener.utils;
+package com.codepressed.urlShortener.util;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
  * @author Codepressed
  */
 public class BaseConverter {
-
-    //TODO Find out how to make Base64 IDs
     /**
      * Automatic generation of a Base 64 Url
      */

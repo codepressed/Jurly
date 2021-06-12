@@ -1,7 +1,7 @@
 package com.codepressed.urlShortener;
 
 
-import com.codepressed.urlShortener.utils.BaseConverter;
+import com.codepressed.urlShortener.util.BaseConverter;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
