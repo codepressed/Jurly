@@ -5,8 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Document(collection = "urlShorten")
 public class ShortUrl {
@@ -20,7 +19,9 @@ public class ShortUrl {
     private String urlCreator;
     @CreatedDate
     @Field("url_creationDate")
-    private Date creationDate;
+    private LocalDateTime creationDate;
+    @Field("url_customized")
+    private String urlCustomized;
 
     public Long getId() {
         return _id;
@@ -44,5 +45,21 @@ public class ShortUrl {
 
     public void setHasAds(Boolean hasAds) {
         this.hasAds = hasAds;
+    }
+
+    public String getUrlCustomized() {
+        return urlCustomized;
+    }
+
+    public String getUrlCreator() {
+        return urlCreator;
+    }
+
+    public void setUrlCreator(String urlCreator) {
+        this.urlCreator = urlCreator;
+    }
+
+    public void setUrlCustomized(String urlCustomized) {
+        this.urlCustomized = urlCustomized;
     }
 }

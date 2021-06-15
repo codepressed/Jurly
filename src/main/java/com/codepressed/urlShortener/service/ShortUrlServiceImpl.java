@@ -4,6 +4,8 @@ import com.codepressed.urlShortener.dao.ShortUrlRepository;
 import com.codepressed.urlShortener.model.ShortUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class ShortUrlServiceImpl implements ShortUrlService{
     @Autowired
     private ShortUrlRepository shortUrlRepository;
@@ -22,9 +24,22 @@ public class ShortUrlServiceImpl implements ShortUrlService{
         if (shortUrlRepository.findById(id).isPresent()){
             return shortUrlRepository.findById(id).get().getUrlDestination();
         } else{
-            return "/";
+            return null;
         }
     }
 
+    @Override
+    public List<ShortUrl> findAll() {
+        return shortUrlRepository.findAll();
+    }
 
+    @Override
+    public List<ShortUrl> findLast10Links() {
+        return null;
+    }
+
+    @Override
+    public String findUrlByCustom(String customLink) {
+        return shortUrlRepository.findByCustomLink();
+    }
 }
