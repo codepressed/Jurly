@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project components (Header, navbar, footer)</title>
+    <link
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}"
+          rel="stylesheet" />
+</head>
+<body>
+<header th:fragment="header"></header>
+<nav th:fragment="nav">
+    <a th:href="@{/}">Homepage</a>
+    <a th:href="@{/addad}">Add ads</a>
+    <a th:href="@{/manageads}">Manage ads</a>
+    <a th:href="@{/error404}">SOON</a>
+</nav>
+<footer th:fragment="footer">
+    <p>&copy; 2020 attacomsian.com</p>
+</footer>
+</body>

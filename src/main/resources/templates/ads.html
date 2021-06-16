@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add ads</title>
@@ -10,10 +10,37 @@
           rel="stylesheet" />
 </head>
 <body>
-<h1>AD Registration</h1>
-<form action="#" th:action="@{/addad}" method="post" th:object="${shortUrl}">
 
-</form>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <form method="post" action="#"
+                  th:action="@{/addad}" th:object="${advertisement}">
+                <h1>Jurly - Add an advertisement</h1>
+                <div class="form-group">
+                    <label for="adName">Ad name</label> <input type="text"
+                                                              class="form-control" id="adName" placeholder="Ad name"
+                                                              th:field="*{adName}" th:required="required"/>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" id="description"
+                              placeholder="Description" rows="3" th:field="*{adDescription}" th:required="required"></textarea>
+                <div class="form-group">
+                    <label for="image">Image link</label> <input type="url"
+                                                                        class="form-control" id="image" placeholder="http://... .jpg"
+                                                                        th:field="*{adImageLink}" th:required="required">
+                </div>
+                    <div class="form-group">
+                        <label for="adDestination">Destination link</label> <input type="text"
+                                                                   class="form-control" id="adDestination" placeholder="http://..."
+                                                                   th:field="*{adDestination}" th:required="required" />
+                    </div>
+                    <button type="submit" class="btn btn-default">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

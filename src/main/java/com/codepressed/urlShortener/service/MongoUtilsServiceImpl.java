@@ -14,6 +14,7 @@ import static org.springframework.data.mongodb.core.query.Query.query;
 
 @Service
 public class MongoUtilsServiceImpl implements MongoUtilsService {
+
     @Autowired
     private MongoOperations mongo;
 

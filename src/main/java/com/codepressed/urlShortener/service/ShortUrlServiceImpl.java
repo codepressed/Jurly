@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class ShortUrlServiceImpl implements ShortUrlService{
+
     @Autowired
     private ShortUrlRepository shortUrlRepository;
 

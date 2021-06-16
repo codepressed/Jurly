@@ -26,7 +26,7 @@ public class UrlConversions {
     }
 
     // Function to get integer ID back from a short url
-    public static int shortURLtoID(String shortURL)
+    public static String shortURLtoID(String shortURL)
     {
         int id = 0; // initialize result
 
@@ -43,7 +43,7 @@ public class UrlConversions {
                     shortURL.charAt(i) <= '9')
                 id = id * 62 + shortURL.charAt(i) - '0' + 52;
         }
-        return id;
+        return String.valueOf(id);
     }
 }
 

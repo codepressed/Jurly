@@ -9,7 +9,10 @@ import java.util.List;
 
 @RepositoryRestResource
 public interface ShortUrlRepository extends MongoRepository<ShortUrl, String> {
+
     String findByCustomLink(String customLink);
+
     String findDestinyUrl(String id);
+
     List<ShortUrl> findLast10Links();
 }

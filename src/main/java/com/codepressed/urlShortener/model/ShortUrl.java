@@ -22,6 +22,8 @@ public class ShortUrl {
     private LocalDateTime creationDate;
     @Field("url_customized")
     private String urlCustomized;
+    @Field("url_views")
+    private Integer urlViews;
 
     public Long getId() {
         return _id;
@@ -61,5 +63,13 @@ public class ShortUrl {
 
     public void setUrlCustomized(String urlCustomized) {
         this.urlCustomized = urlCustomized;
+    }
+
+    public Integer getUrlViews() {
+        return urlViews;
+    }
+
+    public void setUrlViews(Integer urlViews) {
+        this.urlViews = urlViews;
     }
 }
