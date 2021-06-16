@@ -3,8 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script type="text/javascript">
+        var destinationUrl = [[${url}]];
+        var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+            timeleft--;
+            document.getElementById("countdowntimer").textContent = timeleft;
+            if(timeleft <= 0)
+                clearInterval(downloadTimer);
+                window.location.replace(destinationUrl);
+        },1000);
+    </script>
 </head>
 <body>
+<p> The redirect will begin in <span id="countdowntimer">5 </span> Seconds</p>
+<h1 th:text="${advertisement.adName}">Name of the ad</h1>
+<p th:text="${advertisement.adDescription}">Description of the ad</p>
+<img a th:href="${advertisement.adDestination}" th:src="${advertisement.adImageLink}"/>
 
 </body>
 </html>

@@ -24,7 +24,7 @@ public class UrlController {
 
     @GetMapping(value = "/")
     public String index(@RequestParam(name="createdLink", required = false) String createdLink, Model model){
-        model.addAttribute("links", shortUrlService.findAll());
+        model.addAttribute("links", shortUrlService.findLast10Links());
         return "index";
     }
 

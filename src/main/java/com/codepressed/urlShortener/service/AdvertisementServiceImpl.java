@@ -3,17 +3,20 @@ package com.codepressed.urlShortener.service;
 import com.codepressed.urlShortener.dao.AdvertisementRepository;
 import com.codepressed.urlShortener.model.Advertisement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
+@Service
 public class AdvertisementServiceImpl implements AdvertisementService{
 
     @Autowired
     AdvertisementRepository advertisementRepository;
 
     @Override
-    public void addAd(Advertisement advertisement) {
+    public void save(Advertisement advertisement) {
         advertisementRepository.insert(advertisement);
     }
 
@@ -26,6 +29,6 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     public Advertisement randomAd() {
         List<Advertisement> allAds = advertisementRepository.findAll();
         Random random = new Random();
-        return allAds.get(random.nextInt(allAds.size()-0));
+        return allAds.get(random.nextInt(allAds.size()-1));
     }
 }

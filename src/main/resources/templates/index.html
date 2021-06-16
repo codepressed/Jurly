@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="uk">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/style.css" th:href="@{/css/style.css}"
+          rel="stylesheet" />
 </head>
 <body>
 
+<div class="container">
+    <div th:if="${not #lists.isEmpty(links)}">
+        <h2>Last 10 Links Created</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Url destination</th>
+                <th>Has ads</th>
+                <th>Creator</th>
+                <th>Creation date</th>
+                <th>Custom link</th>
+            </tr>
+            <tr th:each="link : ${links}">
+                <td th:text="${link._id}"></td>
+                <td th:text="${link.urlDestination}"></td>
+                <td th:text="${link.hasAds}"></td>
+                <td th:text="${link.urlCreator}"></td>
+                <td th:text="${link.creationDate}"></td>
+                <td th:text="${link.urlCustomized}"></td>
+            </tr>
+            </table>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        th:src="@{/../static/js/jquery-3.3.1.min.js}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        th:src="@{/../static/js/bootstrap.min.js}"></script>
 </body>
 </html>

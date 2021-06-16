@@ -3,9 +3,12 @@ package com.codepressed.urlShortener.service;
 import com.codepressed.urlShortener.dao.ShortUrlRepository;
 import com.codepressed.urlShortener.model.ShortUrl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ShortUrlServiceImpl implements ShortUrlService{
     @Autowired
     private ShortUrlRepository shortUrlRepository;
