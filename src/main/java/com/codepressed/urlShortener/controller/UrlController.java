@@ -42,12 +42,12 @@ public class UrlController {
         resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
     }
 
-    @GetMapping(value = "/")
-    public String randomAd(@PathVariable("id") Long id, Model model) {
+    @GetMapping(value = "/go/{id}")
+    public String randomAd(@PathVariable("id") String id, Model model) {
         Advertisement ad = advertisementService.randomAd();
         if (ad != null) {
             model.addAttribute("advertisement", ad);
-            return "detail";
+            return shortUrlService.findDestinyUrl(id);
         }
         return "redirect:/";
 

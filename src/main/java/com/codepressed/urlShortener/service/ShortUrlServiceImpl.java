@@ -35,11 +35,16 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
     @Override
     public List<ShortUrl> findLast10Links() {
-        return null;
+        return shortUrlRepository.findLast10Links();
+    }
+
+    @Override
+    public String findDestinyUrl(String id) {
+        return shortUrlRepository.findDestinyUrl(id);
     }
 
     @Override
     public String findUrlByCustom(String customLink) {
-        return shortUrlRepository.findByCustomLink();
+        return shortUrlRepository.findByCustomLink(customLink);
     }
 }

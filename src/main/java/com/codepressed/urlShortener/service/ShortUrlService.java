@@ -16,6 +16,5 @@ public interface ShortUrlService {
 
     List<ShortUrl> findLast10Links();
 
-
-
+    String findDestinyUrl(String id);
 }
