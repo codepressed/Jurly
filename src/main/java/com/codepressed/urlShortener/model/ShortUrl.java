@@ -25,6 +25,15 @@ public class ShortUrl {
     @Field("url_views")
     private Integer urlViews;
 
+    public ShortUrl(String urlDestination, Boolean hasAds, String urlCreator, LocalDateTime creationDate, String urlCustomized, Integer urlViews) {
+        this.urlDestination = urlDestination;
+        this.hasAds = hasAds;
+        this.urlCreator = urlCreator;
+        this.creationDate = creationDate;
+        this.urlCustomized = urlCustomized;
+        this.urlViews = urlViews;
+    }
+
     public Long getId() {
         return _id;
     }

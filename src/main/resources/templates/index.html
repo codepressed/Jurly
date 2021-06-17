@@ -14,29 +14,26 @@
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
         <form method="post" action="#"
-              th:action="@{/index}" th:object="${advertisement}">
+              th:action="@{/index}" th:object="${shortUrl}">
             <h1>Create a short url</h1>
             <div class="form-group">
-                <label for="adName">Ad name</label> <input type="text"
-                                                           class="form-control" id="adName" placeholder="Ad name"
-                                                           th:field="*{adName}" th:required="required"/>
+                <label for="urlDestination">Url to shorten</label>
+                <input type="text" class="form-control" id="urlDestination" placeholder="https://www.google.com/?this_url_is_way_too_long"
+                                                           th:field="*{urlDestination}" th:required="required"/>
             </div>
             <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description"
-                          placeholder="Description" rows="3" th:field="*{adDescription}" th:required="required"></textarea>
+                <label for="urlCreator">Creator of the url (Future update, customize)</label>
+                <input type="text" class="form-control" id="urlCreator" placeholder="Dani Apesteguia" th:field="*{urlCreator}" th:required="required" pattern="[a-zA-Z0-9\s]+"/>
+            </div>
                 <div class="form-group">
-                    <label for="image">Image link</label> <input type="url"
-                                                                 class="form-control" id="image" placeholder="http://... .jpg"
-                                                                 th:field="*{adImageLink}" th:required="required">
+                <label for="urlCustomized">Customize url link</label>
+                <input type="text" class="form-control" id="urlCustomized" placeholder="peter" th:field="*{urlCustomized}" th:required="false" pattern="[a-zA-Z0-9\s]+">
                 </div>
                 <div class="form-group">
-                    <label for="adDestination">Destination link</label> <input type="text"
-                                                                               class="form-control" id="adDestination" placeholder="http://..."
-                                                                               th:field="*{adDestination}" th:required="required" />
+                    <label for="hasAds">Url has ads</label>
+                <input type="checkbox" class="form-control" id="hasAds" th:field="*{hasAds}" th:required="required" />
                 </div>
                 <button type="submit" class="btn btn-default">Save</button>
-            </div>
         </form>
     </div>
 </div>

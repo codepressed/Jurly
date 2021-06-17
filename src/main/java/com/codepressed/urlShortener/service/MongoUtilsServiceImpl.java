@@ -1,11 +1,11 @@
 package com.codepressed.urlShortener.service;
 
-import com.codepressed.urlShortener.model.Sequence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import com.codepressed.urlShortener.model.Sequence;
+
 
 
 import static org.springframework.data.mongodb.core.FindAndModifyOptions.options;
@@ -24,6 +24,7 @@ public class MongoUtilsServiceImpl implements MongoUtilsService {
      * @return sequenceID next value
      */
     public Long getNextValue(String sequenceId) {
+        //https://docs.mongodb.com/v3.0/tutorial/create-an-auto-incrementing-field/
         final Sequence sequence = mongo.findAndModify(
                 query(where("_id").is(sequenceId)),
                 new Update().inc("value",1),
@@ -31,5 +32,6 @@ public class MongoUtilsServiceImpl implements MongoUtilsService {
                 Sequence.class);
         return sequence != null ? sequence.getValue() : null;
     }
+
 
 }

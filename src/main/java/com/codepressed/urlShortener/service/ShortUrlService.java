@@ -8,7 +8,7 @@ public interface ShortUrlService {
 
     ShortUrl insert(ShortUrl shortUrl);
 
-    String findUrlById(String id);
+    String findUrlById(Long id);
 
     String findUrlByCustom(String customLink);
 

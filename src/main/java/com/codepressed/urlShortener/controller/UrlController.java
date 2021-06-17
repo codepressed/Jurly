@@ -2,9 +2,7 @@ package com.codepressed.urlShortener.controller;
 
 import com.codepressed.urlShortener.model.Advertisement;
 import com.codepressed.urlShortener.model.ShortUrl;
-import com.codepressed.urlShortener.service.AdvertisementServiceImpl;
-import com.codepressed.urlShortener.service.MongoUtilsServiceImpl;
-import com.codepressed.urlShortener.service.ShortUrlServiceImpl;
+import com.codepressed.urlShortener.service.*;
 import com.codepressed.urlShortener.util.UrlConversions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,14 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class UrlController {
-    @Autowired
-    MongoUtilsServiceImpl mongoUtilsService;
 
     @Autowired
-    ShortUrlServiceImpl shortUrlService;
+    private MongoUtilsService mongoUtilsService;
 
     @Autowired
-    AdvertisementServiceImpl advertisementService;
+    private ShortUrlService shortUrlService;
+
+    @Autowired
+    private AdvertisementService advertisementService;
+
 
     @GetMapping(value = "/")
     public String index(@RequestParam(name="createdLink", required = false) String createdLink, Model model){
@@ -36,8 +36,8 @@ public class UrlController {
         String url;
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null){
             url = shortUrlService.findUrlById(UrlConversions.shortURLtoID(id));
-        }else if (shortUrlService.findUrlByCustom(UrlConversions.shortURLtoID(id)) != null){
-            url = shortUrlService.findUrlByCustom(UrlConversions.shortURLtoID(id));
+        }else if (shortUrlService.findUrlByCustom(String.valueOf(UrlConversions.shortURLtoID(id))) != null){
+            url = shortUrlService.findUrlByCustom(String.valueOf(UrlConversions.shortURLtoID(id)));
         }else {
             url = "error404.html";
         }
@@ -55,7 +55,7 @@ public class UrlController {
         }
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null)
         return shortUrlService.findUrlById(UrlConversions.shortURLtoID(id));
-        else return shortUrlService.findUrlByCustom(UrlConversions.shortURLtoID(id));
+        else return shortUrlService.findUrlByCustom(String.valueOf(UrlConversions.shortURLtoID(id)));
 
     }
 

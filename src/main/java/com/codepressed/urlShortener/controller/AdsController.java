@@ -1,7 +1,9 @@
 package com.codepressed.urlShortener.controller;
 
 import com.codepressed.urlShortener.model.Advertisement;
+import com.codepressed.urlShortener.service.AdvertisementService;
 import com.codepressed.urlShortener.service.AdvertisementServiceImpl;
+import com.codepressed.urlShortener.service.ShortUrlService;
 import com.codepressed.urlShortener.service.ShortUrlServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,19 +18,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AdsController {
 
     @Autowired
-    AdvertisementServiceImpl advertisementServiceImpl;
+    AdvertisementService advertisementService;
 
     @Autowired
-    ShortUrlServiceImpl shortUrlServiceImpl;
+    ShortUrlService shortUrlService;
 
     @GetMapping(value="/{id}")
-    public String getRandomAd(@PathVariable String id, Model model){
-        model.addAttribute("ad", advertisementServiceImpl.randomAd());
+    public String getRandomAd(@PathVariable Long id, Model model){
+        model.addAttribute("ad", advertisementService.randomAd());
         String url;
-        if (shortUrlServiceImpl.findUrlById(id) != null){
-            url = shortUrlServiceImpl.findUrlById(id);
-        }else if (shortUrlServiceImpl.findUrlByCustom(id) != null){
-            url = shortUrlServiceImpl.findUrlByCustom(id);
+        if (shortUrlService.findUrlById(id) != null){
+            url = shortUrlService.findUrlById(id);
+        }else if (shortUrlService.findUrlByCustom(String.valueOf(id)) != null){
+            url = shortUrlService.findUrlByCustom(String.valueOf(id));
         }else {
             url = "/error404.html";
         }
@@ -44,7 +46,7 @@ public class AdsController {
 
     @PostMapping("/submit")
     public String submitAd(Advertisement advertisement, Model model){
-        advertisementServiceImpl.save(advertisement);
+        advertisementService.save(advertisement);
         return "redirect:ad/new_ad";
     }
 }

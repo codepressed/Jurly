@@ -17,7 +17,7 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     AdvertisementRepository advertisementRepository;
 
     @Autowired
-    private MongoUtilsServiceImpl mongoUtilsService;
+    private MongoUtilsService mongoUtilsService;
 
     @Override
     public Advertisement save(Advertisement advertisement) {
