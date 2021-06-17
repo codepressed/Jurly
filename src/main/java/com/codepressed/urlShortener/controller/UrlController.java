@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,20 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 public class UrlController {
 
     @Autowired
-    private MongoUtilsService mongoUtilsService;
-
-    @Autowired
     private ShortUrlService shortUrlService;
 
     @Autowired
     private AdvertisementService advertisementService;
 
-
     @GetMapping(value = "/")
-    public String index(@RequestParam(name="createdLink", required = false) String createdLink, Model model){
+    public String index(@RequestParam(value="newLink", required = false) String newLink, Model model){
         model.addAttribute("links", shortUrlService.findLast10Links());
-        model.addAttribute("createdLink", createdLink);
         model.addAttribute("shortUrl", new ShortUrl());
+        model.addAttribute("newLink", newLink);
         return "index";
     }
 
@@ -37,7 +34,7 @@ public class UrlController {
         return "error404";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public void redirectToUrl (@PathVariable String id, HttpServletResponse resp){
         String url;
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null){
@@ -56,7 +53,7 @@ public class UrlController {
         Advertisement ad = advertisementService.randomAd();
         if (ad != null) {
             model.addAttribute("advertisement", ad);
-            model.addAttribute("shortenUrl", shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)));
+            model.addAttribute("url", shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)));
             return "go";
         }
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null)
@@ -66,10 +63,10 @@ public class UrlController {
     }
 
     @PostMapping("/addurl")
-    public String submitNewUrl(ShortUrl shortUrl, Model model) {
+    public String submitNewUrl(ShortUrl shortUrl, RedirectAttributes redirectAttributes, Model model) {
         shortUrlService.insert(shortUrl);
-        model.addAttribute("newLink", UrlConversions.idToShortURL(Math.toIntExact(shortUrl.getId())));
         model.addAttribute("links", shortUrlService.findLast10Links());
+        redirectAttributes.addAttribute("newLink", UrlConversions.idToShortURL(Math.toIntExact(shortUrl.getId())));
         return "redirect:/";
 
     }

@@ -43,7 +43,7 @@ public class UrlConversions {
                     shortURL.charAt(i) <= '9')
                 id = id * 62 + shortURL.charAt(i) - '0' + 52;
         }
-        return Long.valueOf(id);
+        return (long) id;
     }
 }
 

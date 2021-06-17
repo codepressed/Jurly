@@ -7,16 +7,17 @@
             th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link href="../static/css/style.css" th:href="@{/css/style.css}"
           rel="stylesheet" />
-    <link rel="shortcut icon" href="./" type="image/png" />
+    <link rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}" type="image/png" />
 
 </head>
 <body>
-<div th:insert="fragments/components.html :: header"></div>
+<div th:insert="fragments/components.html :: nav"></div>
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
         <form method="post" action="#"
               th:action="@{/addurl}" th:object="${shortUrl}">
             <h1>Create a short url</h1>
+            <p th:if="${newLink != null}" style="background-color:lawngreen;padding:5px; color: black ">Url created succesfully! Your new url link is: <a th:href="${newLink}" ><span th:text="${newLink}"></span></a></p>
             <div class="form-group">
                 <label for="urlDestination">Url to shorten</label>
                 <input type="text" class="form-control" id="urlDestination" placeholder="https://www.google.com/?this_url_is_way_too_long"
@@ -32,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="hasAds">Url has ads</label>
-                <input type="checkbox" class="form-control" id="hasAds" th:field="*{hasAds}" th:required="required" />
+                <input type="checkbox" class="form-control" id="hasAds" th:field="*{hasAds}" th:required="false" />
                 </div>
                 <button type="submit" class="btn btn-default">Save</button>
         </form>
@@ -45,6 +46,7 @@
         <table class="table table-striped">
             <tr>
                 <th>Id</th>
+                <th>Shortened url</th>
                 <th>Url destination</th>
                 <th>Has ads</th>
                 <th>Creator</th>
@@ -53,6 +55,7 @@
             </tr>
             <tr th:each="link : ${links}">
                 <td th:text="${link._id}"></td>
+                <td><a th:href="${link.getUrl8Chars()}" th:text="${link.getUrl8Chars()}"></a></td>
                 <td th:text="${link.urlDestination}"></td>
                 <td th:text="${link.hasAds}"></td>
                 <td th:text="${link.urlCreator}"></td>

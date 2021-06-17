@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+           th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link href="../static/css/style.css" th:href="@{/css/style.css}"
           rel="stylesheet" />
+    <link rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}" type="image/png" />
 </head>
 <body>
-<div th:insert="fragments/components.html :: header"></div>
+<div th:insert="fragments/components.html :: nav"></div>
+
+<nav id="error404" class="center-block bg-warning" style="background-color: #f35a5a; margin-top: -20px; margin-bottom: -10px; text-align: center">
+    <h1>OOOOOPS JUMI!</h1>
+    <img src="../static/images/error-404.jpg" th:src="@{/images/error-404.jpg}" style="width: 60%; height: auto"/>
+</nav>
 
 <div th:insert="fragments/components.html :: footer"></div>
 

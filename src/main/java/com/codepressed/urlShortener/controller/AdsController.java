@@ -24,11 +24,11 @@ public class AdsController {
     ShortUrlService shortUrlService;
 
     @GetMapping(value="/{id}")
-    public String getRandomAd(@PathVariable Long id, Model model){
+    public String getRandomAd(@PathVariable String id, Model model){
         model.addAttribute("ad", advertisementService.randomAd());
         String url;
-        if (shortUrlService.findUrlById(id) != null){
-            url = shortUrlService.findUrlById(id);
+        if (shortUrlService.findUrlById(Long.valueOf(id)) != null){
+            url = shortUrlService.findUrlById(Long.valueOf(id));
         }else if (shortUrlService.findUrlByCustom(String.valueOf(id)) != null){
             url = shortUrlService.findUrlByCustom(String.valueOf(id));
         }else {
@@ -47,6 +47,6 @@ public class AdsController {
     @PostMapping("/submit")
     public String submitAd(Advertisement advertisement, Model model){
         advertisementService.save(advertisement);
-        return "redirect:ad/new_ad";
+        return "redirect:new_ad";
     }
 }

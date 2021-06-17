@@ -1,7 +1,9 @@
 package com.codepressed.urlShortener.model;
 
+import com.codepressed.urlShortener.util.UrlConversions;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,7 +21,7 @@ public class ShortUrl {
     @Field("url_creator")
     private String urlCreator;
     @DateTimeFormat(style = "M-")
-    @CreatedDate
+    @LastModifiedDate
     @Field("url_creationDate")
     private LocalDateTime creationDate;
     @Field("url_customized")
@@ -105,5 +107,9 @@ public class ShortUrl {
 
     public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getUrl8Chars(){
+        return UrlConversions.idToShortURL(Math.toIntExact(this._id));
     }
 }

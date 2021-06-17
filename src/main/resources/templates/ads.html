@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Add ads</title>
-    <link
-            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-            th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link href="../static/css/style.css" th:href="@{/css/style.css}"
           rel="stylesheet" />
+    <link rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}" type="image/png" />
 </head>
 <body>
-<div th:insert="fragments/components.html :: header"></div>
+<div th:insert="fragments/components.html :: nav"></div>
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <form method="post" action="#"
-                  th:action="@{/addad}" th:object="${advertisement}">
-                <h1>Jurly - Add an advertisement</h1>
+                  th:action="@{/ad/submit}" th:object="${advertisement}">
+                <h1>Add an advertisement</h1>
                 <div class="form-group">
                     <label for="adName">Ad name</label> <input type="text"
                                                               class="form-control" id="adName" placeholder="Ad name"
@@ -32,7 +32,7 @@
                                                                         th:field="*{adImageLink}" th:required="required">
                 </div>
                     <div class="form-group">
-                        <label for="adDestination">Destination link</label> <input type="text"
+                        <label for="adDestination">Destination link</label> <input type="url"
                                                                    class="form-control" id="adDestination" placeholder="http://..."
                                                                    th:field="*{adDestination}" th:required="required" />
                     </div>
