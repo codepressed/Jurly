@@ -13,5 +13,5 @@ public interface ShortUrlRepository extends MongoRepository<ShortUrl,Long> {
 
     String findUrlDestinationById(Long id);
 
-    List<ShortUrl> findFirst10ByCreationDateDesc();
+    List<ShortUrl> findFirst10ByOrderByCreationDateDesc();
 }

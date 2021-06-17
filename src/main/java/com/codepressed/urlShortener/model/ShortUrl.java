@@ -4,6 +4,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +18,7 @@ public class ShortUrl {
     private Boolean hasAds;
     @Field("url_creator")
     private String urlCreator;
+    @DateTimeFormat(style = "M-")
     @CreatedDate
     @Field("url_creationDate")
     private LocalDateTime creationDate;
@@ -25,11 +27,14 @@ public class ShortUrl {
     @Field("url_views")
     private Integer urlViews;
 
-    public ShortUrl(String urlDestination, Boolean hasAds, String urlCreator, LocalDateTime creationDate, String urlCustomized, Integer urlViews) {
+    public ShortUrl(){
+
+    }
+
+    public ShortUrl(String urlDestination, Boolean hasAds, String urlCreator, String urlCustomized, Integer urlViews) {
         this.urlDestination = urlDestination;
         this.hasAds = hasAds;
         this.urlCreator = urlCreator;
-        this.creationDate = creationDate;
         this.urlCustomized = urlCustomized;
         this.urlViews = urlViews;
     }
@@ -80,5 +85,25 @@ public class ShortUrl {
 
     public void setUrlViews(Integer urlViews) {
         this.urlViews = urlViews;
+    }
+
+    public Long get_id() {
+        return _id;
+    }
+
+    public void set_id(Long _id) {
+        this._id = _id;
+    }
+
+    public void setUrlDestination(String urlDestination) {
+        this.urlDestination = urlDestination;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 }

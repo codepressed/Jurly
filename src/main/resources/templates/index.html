@@ -11,6 +11,7 @@
 
 </head>
 <body>
+<div th:insert="fragments/components.html :: header"></div>
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
         <form method="post" action="#"
@@ -69,5 +70,6 @@
 <script
         src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         th:src="@{/../static/js/bootstrap.min.js}"></script>
+<div th:insert="fragments/components.html :: footer"></div>
 </body>
 </html>

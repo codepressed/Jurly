@@ -28,7 +28,13 @@ public class UrlController {
     public String index(@RequestParam(name="createdLink", required = false) String createdLink, Model model){
         model.addAttribute("links", shortUrlService.findLast10Links());
         model.addAttribute("createdLink", createdLink);
+        model.addAttribute("shortUrl", new ShortUrl());
         return "index";
+    }
+
+    @GetMapping(value = "error404.html")
+    public String error404(){
+        return "error404";
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

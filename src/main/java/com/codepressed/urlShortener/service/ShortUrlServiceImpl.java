@@ -39,7 +39,7 @@ public class ShortUrlServiceImpl implements ShortUrlService{
 
     @Override
     public List<ShortUrl> findLast10Links() {
-        return shortUrlRepository.findFirst10ByCreationDateDesc();
+        return shortUrlRepository.findFirst10ByOrderByCreationDateDesc();
     }
 
     @Override
