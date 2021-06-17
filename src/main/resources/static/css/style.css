@@ -40,13 +40,18 @@ nav{
 }
 
 table{
-    color: white;
+    color:white!important;
+    background-color: #555!important;
 }
 
 thead{
     background-color:darkcyan;
     border: 2px solid black;
     width: 100%;
+}
+
+tr{
+    background-color: #555!important;
 }
 
 img{

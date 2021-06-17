@@ -32,7 +32,7 @@ public class UrlController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public void redirectToUrl (@PathVariable String id, HttpServletResponse resp) throws Exception{
+    public void redirectToUrl (@PathVariable String id, HttpServletResponse resp){
         String url;
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null){
             url = shortUrlService.findUrlById(UrlConversions.shortURLtoID(id));
@@ -59,10 +59,12 @@ public class UrlController {
 
     }
 
-    @PostMapping("/shorten/new")
+    @PostMapping("/addurl")
     public String submitNewUrl(ShortUrl shortUrl, Model model) {
         shortUrlService.insert(shortUrl);
-        return "redirect:/index";
+        model.addAttribute("newLink", UrlConversions.idToShortURL(Math.toIntExact(shortUrl.getId())));
+        model.addAttribute("links", shortUrlService.findLast10Links());
+        return "redirect:/";
 
     }
 

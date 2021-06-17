@@ -20,7 +20,7 @@ public class MongoUtilsServiceImpl implements MongoUtilsService {
 
     /**
      * Mongo autoincremental
-     * @param sequenceId
+     * @param sequenceId Name of the sequence / document
      * @return sequenceID next value
      */
     public Long getNextValue(String sequenceId) {
