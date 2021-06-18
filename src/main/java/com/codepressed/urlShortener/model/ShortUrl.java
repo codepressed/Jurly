@@ -8,10 +8,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Document(collection = "urlShorten")
-public class ShortUrl {
+public class ShortUrl implements Serializable {
     @Id
     private Long _id;
     @Field("url_destination")
@@ -111,5 +112,18 @@ public class ShortUrl {
 
     public String getUrl8Chars(){
         return UrlConversions.idToShortURL(Math.toIntExact(this._id));
+    }
+
+    @Override
+    public String toString() {
+        return "ShortUrl{" +
+                "_id=" + _id +
+                ", urlDestination='" + urlDestination + '\'' +
+                ", hasAds=" + hasAds +
+                ", urlCreator='" + urlCreator + '\'' +
+                ", creationDate=" + creationDate +
+                ", urlCustomized='" + urlCustomized + '\'' +
+                ", urlViews=" + urlViews +
+                '}';
     }
 }

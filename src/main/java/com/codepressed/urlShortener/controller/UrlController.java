@@ -34,7 +34,7 @@ public class UrlController {
         return "error404";
     }
 
-    @GetMapping(value = "/{id}")
+    /**
     public void redirectToUrl (@PathVariable String id, HttpServletResponse resp){
         String url;
         if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null){
@@ -47,18 +47,43 @@ public class UrlController {
         resp.addHeader("Location", url);
         resp.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
     }
+    */
+
+    @GetMapping(value="/{id}")
+    public void redirectingUrls(@PathVariable String id, HttpServletResponse response){
+        String url;
+        Boolean hasAds = false;
+        if(shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null){
+            url = shortUrlService.findUrlById(UrlConversions.shortURLtoID(id));
+            hasAds = shortUrlService.findHasAdsById(UrlConversions.shortURLtoID(id));
+        }else if(shortUrlService.findUrlByCustom(id) != null){
+            url = shortUrlService.findByUrlCustomized(id);
+            hasAds = shortUrlService.findHasAdsByUrlCustomized(id);
+        }else{
+            url = "error404.html";
+        }
+
+        if(hasAds){
+            url = "go/" + id;
+        }
+        response.addHeader("Location", url);
+        response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
+    }
 
     @GetMapping(value = "/go/{id}")
     public String randomAd(@PathVariable("id") String id, Model model) {
         Advertisement ad = advertisementService.randomAd();
         if (ad != null) {
             model.addAttribute("advertisement", ad);
-            model.addAttribute("url", shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)));
+            if(shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) == null){
+                model.addAttribute("url", shortUrlService.findByUrlCustomized(id));
+            }
+            else{
+                model.addAttribute("url", shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)));
+            }
             return "go";
         }
-        if (shortUrlService.findUrlById(UrlConversions.shortURLtoID(id)) != null)
-        return shortUrlService.findUrlById(UrlConversions.shortURLtoID(id));
-        else return shortUrlService.findUrlByCustom(String.valueOf(UrlConversions.shortURLtoID(id)));
+        return "error404.html";
 
     }
 

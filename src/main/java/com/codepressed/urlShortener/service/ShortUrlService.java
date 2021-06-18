@@ -16,5 +16,14 @@ public interface ShortUrlService {
 
     List<ShortUrl> findLast10Links();
 
-    String findDestinyUrl(String id);
+    void update(String urlId, String urlDestination, Boolean hasAds, String urlCreator, String urlCustomized, Integer urlViews);
+
+    void delete(Long urlId);
+
+    Boolean findHasAdsById(Long shortURLtoID);
+
+    Boolean findHasAdsByCustom(String id);
+
+    String findByUrlCustomized(String urlCustomized);
+    Boolean findHasAdsByUrlCustomized(String urlCustomized);
 }

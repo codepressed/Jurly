@@ -16,6 +16,13 @@
 <nav th:fragment="nav" class="navbar navbar-dark bg-dark" style="background-color: #212529!important;" >
     <div class="container-fluid">
         <span class="mb-0 h1">JURLY: URL Shortener <span class="orange">Java </span> <span class="green">Spring</span> + <span class="darkergreen">MongoDB</span> + <span class="green">Thymeleaf</span> + <span class="purple">Heroku</span></span>
+        <hr>
+        <div class="menu text-center">
+            <span class="mb-0 h2 " ><a th:href="@{/}" style="color: orange!important;">Homepage</a> |
+            <a th:href="@{/ad/new_ad}" style="color: orange!important;">Add ads</a> |
+            <a th:href="@{/api/v1/url/all}" style="color: orange!important;">API</a> |
+            <a th:href="@{/error404}" style="color: orange!important;">Soon ...</a></span>
+        </div>
     </div>
     <!--
     <a th:href="@{/}">Homepage</a>

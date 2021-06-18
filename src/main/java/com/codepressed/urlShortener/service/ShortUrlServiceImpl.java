@@ -4,6 +4,7 @@ import com.codepressed.urlShortener.dao.ShortUrlRepository;
 import com.codepressed.urlShortener.model.ShortUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -43,12 +44,42 @@ public class ShortUrlServiceImpl implements ShortUrlService{
     }
 
     @Override
-    public String findDestinyUrl(String id) {
-        return shortUrlRepository.findUrlDestinationById(Long.valueOf(id));
-    }
-
-    @Override
     public String findUrlByCustom(String customLink) {
         return shortUrlRepository.findUrlDestinationByUrlCustomized(customLink);
     }
+
+    @Transactional
+    @Override
+    public void update(String urlId, String urlDestination, Boolean hasAds, String urlCreator, String urlCustomized, Integer urlViews) {
+    }
+
+    @Override
+    public void delete(Long urlId) {
+        shortUrlRepository.deleteById(Long.valueOf(urlId));
+    }
+
+    @Override
+    public Boolean findHasAdsById(Long shortURLtoID) {
+        if (shortUrlRepository.findById(shortURLtoID).isPresent()) {
+            return shortUrlRepository.findById(shortURLtoID).get().getHasAds();
+        } else
+            return false;
+    }
+
+    @Override
+    public Boolean findHasAdsByCustom(String id) {
+        return shortUrlRepository.findHasAdsByUrlCustomized(id);
+    }
+
+    @Override
+    public String findByUrlCustomized(String urlCustomized){
+        return shortUrlRepository.findByUrlCustomized(urlCustomized).get().getUrlDestination();
+    }
+
+    @Override
+    public Boolean findHasAdsByUrlCustomized(String urlCustomized) {
+        return shortUrlRepository.findByUrlCustomized(urlCustomized).get().getHasAds();
+    }
+
+
 }

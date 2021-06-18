@@ -29,8 +29,8 @@ public class AdsController {
         String url;
         if (shortUrlService.findUrlById(Long.valueOf(id)) != null){
             url = shortUrlService.findUrlById(Long.valueOf(id));
-        }else if (shortUrlService.findUrlByCustom(String.valueOf(id)) != null){
-            url = shortUrlService.findUrlByCustom(String.valueOf(id));
+        }else if (shortUrlService.findUrlByCustom(id) != null){
+            url = shortUrlService.findUrlByCustom(id);
         }else {
             url = "/error404.html";
         }

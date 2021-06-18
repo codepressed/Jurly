@@ -26,8 +26,8 @@ public class AdvertisementServiceImpl implements AdvertisementService{
     }
 
     @Override
-    public void removeAd(Advertisement advertisement) {
-        advertisementRepository.delete(advertisement);
+    public void removeAd(Long id) {
+        advertisementRepository.deleteById(id);
     }
 
     @Override
@@ -35,5 +35,10 @@ public class AdvertisementServiceImpl implements AdvertisementService{
         List<Advertisement> allAds = advertisementRepository.findAll();
         Random random = new Random();
         return allAds.get(random.nextInt(allAds.size()-1));
+    }
+
+    @Override
+    public List<Advertisement> findAll() {
+        return advertisementRepository.findAll();
     }
 }
